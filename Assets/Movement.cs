@@ -13,7 +13,8 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) transform.position += new Vector3(-0.1f, 0);
-        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) transform.position += new Vector3(0.1f, 0);
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) transform.position += new Vector3(-0.04f, 0);
+        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) transform.position += new Vector3(0.04f, 0);
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space)) transform.position += new Vector3(0, 0.03f);
     }
 }
