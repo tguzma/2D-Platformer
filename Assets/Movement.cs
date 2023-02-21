@@ -32,7 +32,7 @@ public class Movement : MonoBehaviour
             rb.position += new Vector2(moveAmount, 0);
             spi.flipX = false;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && rb.IsTouchingLayers())
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && rb.IsTouchingLayers())
         {
             rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
         }
