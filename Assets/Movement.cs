@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -8,9 +9,12 @@ public class Movement : MonoBehaviour
     public SpriteRenderer spi;
     public float jumpAmount;
     public float moveAmount;
+    public Sprite jumpSprite;
+    public Sprite stillSprite;
 
     private const float gravityScale = 10;
     private const float fallingGravityScale = 25;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,9 +36,13 @@ public class Movement : MonoBehaviour
             rb.position += new Vector2(moveAmount, 0);
             spi.flipX = false;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && rb.IsTouchingLayers())
+        if (rb.IsTouchingLayers())
         {
-            rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                spi.sprite = jumpSprite;
+                rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
+            }
         }
         if (rb.velocity.y >= 0)
         {
@@ -42,6 +50,7 @@ public class Movement : MonoBehaviour
         }
         else if (rb.velocity.y < 0)
         {
+            spi.sprite = stillSprite;
             rb.gravityScale = fallingGravityScale;
         }
     }
