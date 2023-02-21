@@ -1,7 +1,4 @@
-# 2D-Platformer
-## Main Plot
-Your are Blop Beam, you must jump up to tower to save your suicide girlfriend.
-
-## TEAM MEMBERS:
-@KupaZET 
-@tguzma
+## What is test area Branch:
+Test are to test function, it shall be <b>!never!</b> merge with <b> main </b>.
+Just to save testing and stupid thing. You can push here anything you want to share with other. 
+If all work on all machine.
