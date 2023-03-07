@@ -1,6 +1,6 @@
 # 2D-Platformer
 ## Main Plot
-Your are Blop Beam, you must jump up to tower to save your suicide girlfriend.
+Your are Blop Beam and say drugs no.
 
 ## TEAM MEMBERS:
 @KupaZET 
