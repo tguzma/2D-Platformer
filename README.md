@@ -3,5 +3,5 @@
 Your are Blop Beam and say drugs no.
 
 ## TEAM MEMBERS:
-@KupaZET 
-@tguzma
+- [@KupaZET](https://github.com/KupaZET)
+- [@tguzma](https://github.com/tguzma)
