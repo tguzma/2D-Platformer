@@ -25,9 +25,10 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float velocityY = rb.velocity.y;
+
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-
             rb.position += new Vector2(-moveAmount, 0);
             spi.flipX = true;
         }
@@ -41,11 +42,11 @@ public class Movement : MonoBehaviour
             spi.sprite = jumpSprite;
             rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
         }
-        if (rb.velocity.y >= 0)
+        if (velocityY >= 0)
         {
             rb.gravityScale = gravityScale;
         }
-        else if (rb.velocity.y < 0)
+        else if (velocityY < 0)
         {
             spi.sprite = stillSprite;
             rb.gravityScale = fallingGravityScale;
