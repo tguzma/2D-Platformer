@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+
+    //TODO: enemy movement on platforms with textures!
     public Rigidbody2D rb;
     public SpriteRenderer spi;
     public GameObject platform;
@@ -16,10 +18,13 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        float scaleX = platform.GetComponent<Collider2D>().bounds.size.x;
+        float posX = platform.transform.position.x;
+
+        leftEdge = posX - (scaleX / 2) + scaleX / 20;
+        rightEdge = posX + (scaleX / 2) - scaleX / 20;
         rb = GetComponent<Rigidbody2D>();
         spi = GetComponent<SpriteRenderer>();
-        leftEdge = platform.transform.position.x - (platform.transform.localScale.x / 2) + 1;
-        rightEdge = platform.transform.position.x + (platform.transform.localScale.x / 2) - 1;
     }
 
     // Update is called once per frame
