@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Death : MonoBehaviour
 {
     public Rigidbody2D mainCharRb;
-    public Rigidbody2D enemyCharRb;
+    public List<Rigidbody2D> enemyCharRb;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +15,7 @@ public class Death : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D character)
     {
-        if(character.attachedRigidbody == enemyCharRb)
+        if(character.attachedRigidbody == enemyCharRb.Any())
         {
             mainCharRb.transform.position = new Vector3(0,-3,1);
         }
