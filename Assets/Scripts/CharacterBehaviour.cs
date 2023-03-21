@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class CharacterBehaviour : MonoBehaviour
 {
     public Rigidbody2D rb;
     public SpriteRenderer spi;
@@ -11,6 +8,9 @@ public class Movement : MonoBehaviour
     public float moveAmount;
     public Sprite jumpSprite;
     public Sprite stillSprite;
+    public ProjectileBehaviour projectile;
+    public Transform projectileOffsetLeft;
+    public Transform projectileOffsetRight;
 
     private const float gravityScale = 10;
     private const float fallingGravityScale = 25;
@@ -27,21 +27,31 @@ public class Movement : MonoBehaviour
     {
         float velocityY = rb.velocity.y;
 
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
             rb.position += new Vector2(-moveAmount, 0);
             spi.flipX = true;
         }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D))
         {
             rb.position += new Vector2(moveAmount, 0);
             spi.flipX = false;
         }
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && rb.IsTouchingLayers())
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && rb.IsTouchingLayers())
         {
             spi.sprite = jumpSprite;
             rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
         }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            Instantiate(projectile, projectileOffsetLeft.position, transform.rotation).IsHeadingRight = false;
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            Instantiate(projectile, projectileOffsetRight.position, transform.rotation).IsHeadingRight = true;
+        }
+
+
         if (velocityY >= 0)
         {
             rb.gravityScale = gravityScale;
