@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-
-    //TODO: enemy movement on platforms with textures!
     public Rigidbody2D rb;
     public SpriteRenderer spi;
     public GameObject platform;

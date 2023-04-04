@@ -5,16 +5,11 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     public Rigidbody2D targetObject;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    private float cameraOffsetY = -8;
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector2(0, targetObject.position.y);
+        transform.position = new Vector2(0, targetObject.position.y - cameraOffsetY);
     }
 }

@@ -314,8 +314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3374412becf25bc49b5ac2bfdc3a9897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  spi: {fileID: 0}
   jumpAmount: 50
   moveAmount: 1
   jumpSprite: {fileID: 21300000, guid: a67831660b93b2545a83f1fcbfefbe5b, type: 3}

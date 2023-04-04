@@ -21,8 +21,21 @@ public class ProjectileBehaviour : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<EnemyMovement>() != null)
         {
-            Debug.Log("hit!");
             Destroy(collision.gameObject, 0.05f);
+        }
+        if (collision.gameObject.GetComponent<BossBehaviour>() != null)
+        {
+            var boss = collision.gameObject.GetComponent<BossBehaviour>();
+            if (boss.healthPoints > 10)
+            {
+                boss.healthPoints -= 10;
+                boss.healthBar.localScale = new Vector2(boss.healthBar.localScale.x - 1.5f, boss.healthBar.localScale.y);
+            }
+            else
+            {
+                boss.SpawnNextLevelObject();
+                Destroy(collision.gameObject, 0.05f);
+            }
         }
         Destroy(gameObject);
     }
