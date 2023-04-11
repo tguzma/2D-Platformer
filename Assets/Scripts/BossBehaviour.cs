@@ -7,23 +7,14 @@ public class BossBehaviour : MonoBehaviour
     public GameObject character;
     public GameObject nextLevelObject;
     public Transform healthBar;
-    public float healthPoints = 100.0f;
-    private Rigidbody2D rb;
-    private SpriteRenderer spi;
     public ProjectileBehaviour projectile;
     public List<Transform> projectileOffsetsLeft;
     public List<Transform> projectileOffsetsRight;
+    public float healthPoints = 100.0f;
     private const float baseCoolDown = 1.0f;
-    private const float lowHealthCoolDown = 0.5f;
+    private const float lowHealthCoolDown = 0.75f;
     private float projectileCoolDown = baseCoolDown;
     private bool isFacingLeft = true;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        spi = GetComponent<SpriteRenderer>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -44,6 +35,12 @@ public class BossBehaviour : MonoBehaviour
 
     public void SpawnNextLevelObject()
     {
-        Instantiate(nextLevelObject,rb.transform);
+        Instantiate(nextLevelObject, projectileOffsetsLeft[1].position, transform.rotation);
+    }
+
+    public void ResetHealth()
+    {
+        healthPoints = 100;
+        healthBar.localScale = new Vector2(0.99f, healthBar.localScale.y);
     }
 }
