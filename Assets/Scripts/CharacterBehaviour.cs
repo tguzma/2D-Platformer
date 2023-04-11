@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class CharacterBehaviour : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    public SpriteRenderer spi;
     public float jumpAmount;
     public float moveAmount;
     public Sprite jumpSprite;
@@ -12,6 +10,9 @@ public class CharacterBehaviour : MonoBehaviour
     public Transform projectileOffsetLeft;
     public Transform projectileOffsetRight;
 
+    private Rigidbody2D rb;
+    private SpriteRenderer spi;
+    private float projectileCoolDown = 1.0f;
     private const float gravityScale = 10;
     private const float fallingGravityScale = 25;
 
@@ -25,6 +26,7 @@ public class CharacterBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        projectileCoolDown -= Time.deltaTime;
         float velocityY = rb.velocity.y;
 
         if (Input.GetKey(KeyCode.A))
@@ -42,12 +44,14 @@ public class CharacterBehaviour : MonoBehaviour
             spi.sprite = jumpSprite;
             rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && projectileCoolDown < 0)
         {
+            projectileCoolDown = 1.0f;
             Instantiate(projectile, projectileOffsetLeft.position, transform.rotation).IsHeadingRight = false;
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) && projectileCoolDown < 0)
         {
+            projectileCoolDown = 1.0f;
             Instantiate(projectile, projectileOffsetRight.position, transform.rotation).IsHeadingRight = true;
         }
 

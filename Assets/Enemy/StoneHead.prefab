@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3734243964995333239}
   - component: {fileID: 3734243964995333232}
   - component: {fileID: 3734243964995333233}
-  - component: {fileID: 3734243964995333234}
   m_Layer: 0
   m_Name: StoneHead
   m_TagString: Untagged
@@ -152,19 +151,3 @@ MonoBehaviour:
   platform: {fileID: 0}
   moveAmount: 0.8
   walksLeft: 1
---- !u!114 &3734243964995333234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3734243964995333236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a3c2a86f2f477442b55ad65428d136a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  killingObjects:
-  - {fileID: 0}
-  respawnX: -20
-  respawnY: -10

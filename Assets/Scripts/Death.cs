@@ -5,22 +5,32 @@ using UnityEngine;
 
 public class Death : MonoBehaviour
 {
-    public List<GameObject> killingObjects;
-    public float respawnX;
-    public float respawnY;
+    public Transform basePlatform;
     private Rigidbody2D rb;
+    private Vector3 respawnPosition;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        float scaleX = basePlatform.GetComponent<Collider2D>().bounds.size.x;
+        float posX = basePlatform.position.x;
+        float posY = basePlatform.position.y;
+
+        respawnPosition = new Vector3(posX - (scaleX / 2) + scaleX / 10, posY + 1.5f, 1);
     }
 
     void OnTriggerEnter2D(Collider2D character)
     {
-        if(killingObjects.Contains(character.gameObject))
+        if(character.gameObject.GetComponent<EnemyMovement>() != null ||
+            character.gameObject.GetComponent<BossBehaviour>() != null)
         {
-            rb.transform.position = new Vector3(respawnX,respawnY,1);
+            Respawn();
         }
+    }
+
+    public void Respawn()
+    {
+        rb.transform.position = respawnPosition;
     }
 }
