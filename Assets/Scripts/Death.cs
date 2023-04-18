@@ -17,13 +17,14 @@ public class Death : MonoBehaviour
         float posX = basePlatform.position.x;
         float posY = basePlatform.position.y;
 
-        respawnPosition = new Vector3(posX - (scaleX / 2) + scaleX / 10, posY + 1.5f, 1);
+        respawnPosition = new Vector3(posX - (scaleX / 2) + scaleX / 10, posY + 10f, 1);
     }
 
     void OnTriggerEnter2D(Collider2D character)
     {
-        if(character.gameObject.GetComponent<EnemyMovement>() != null ||
-            character.gameObject.GetComponent<BossBehaviour>() != null)
+        if (character.gameObject.GetComponent<EnemyMovement>() != null ||
+            character.gameObject.GetComponent<BossBehaviour>() != null ||
+            character.gameObject.name.Contains("spike"))
         {
             Respawn();
         }

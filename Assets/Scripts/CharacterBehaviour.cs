@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 
 public class CharacterBehaviour : MonoBehaviour
@@ -25,10 +26,13 @@ public class CharacterBehaviour : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        projectileCoolDown -= Time.deltaTime;
-        float velocityY = rb.velocity.y;
+    {        
+        HandleMovement();
+        HandleShooting();
+    }
 
+    private void HandleMovement()
+    {
         if (Input.GetKey(KeyCode.A))
         {
             rb.position += new Vector2(-moveAmount, 0);
@@ -44,17 +48,13 @@ public class CharacterBehaviour : MonoBehaviour
             spi.sprite = jumpSprite;
             rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && projectileCoolDown < 0)
+
+        if (rb.position.y < -30)
         {
-            projectileCoolDown = 1.0f;
-            Instantiate(projectile, projectileOffsetLeft.position, transform.rotation).IsHeadingRight = false;
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && projectileCoolDown < 0)
-        {
-            projectileCoolDown = 1.0f;
-            Instantiate(projectile, projectileOffsetRight.position, transform.rotation).IsHeadingRight = true;
+            transform.gameObject.GetComponent<Death>().Respawn();
         }
 
+        float velocityY = rb.velocity.y;
 
         if (velocityY >= 0)
         {
@@ -64,6 +64,22 @@ public class CharacterBehaviour : MonoBehaviour
         {
             spi.sprite = stillSprite;
             rb.gravityScale = fallingGravityScale;
+        }
+    }
+
+    private void HandleShooting()
+    {
+        projectileCoolDown -= Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && projectileCoolDown < 0)
+        {
+            projectileCoolDown = 1.0f;
+            Instantiate(projectile, projectileOffsetLeft.position, transform.rotation).IsHeadingRight = false;
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow) && projectileCoolDown < 0)
+        {
+            projectileCoolDown = 1.0f;
+            Instantiate(projectile, projectileOffsetRight.position, transform.rotation).IsHeadingRight = true;
         }
     }
 }
