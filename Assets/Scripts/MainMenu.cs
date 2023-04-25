@@ -1,15 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net;
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class MainMenu : MonoBehaviour
 {
+    public TextMeshProUGUI score;
+
+    private void Start()
+    {
+        if (score != null)
+        {
+            var time = ScoreHandler.GetTime();
+            score.text =
+                $"Time: {Math.Round(time.TotalMinutes,0)}m {Math.Round(time.TotalSeconds,0)}s\nDeaths: {ScoreHandler.GetDeaths()}\nScore: {ScoreHandler.CalculateScore()}";
+        }
+    }
+
     public void LoadFirstLevel()
     {
+        ScoreHandler.Start(TimeSpan.FromHours(1));
         SceneManager.LoadScene(1,LoadSceneMode.Single);
     }
 
