@@ -22,6 +22,7 @@ public class CharacterBehaviour : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spi = GetComponent<SpriteRenderer>();
+        moveAmount = 1;
     }
 
     // Update is called once per frame

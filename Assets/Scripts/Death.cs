@@ -13,6 +13,7 @@ public class Death : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        if (basePlatform == null) Debug.Log(transform.name);
         float scaleX = basePlatform.GetComponent<Collider2D>().bounds.size.x;
         float posX = basePlatform.position.x;
         float posY = basePlatform.position.y;
@@ -32,6 +33,7 @@ public class Death : MonoBehaviour
 
     public void Respawn()
     {
+        ScoreHandler.Died();
         rb.transform.position = respawnPosition;
     }
 }
