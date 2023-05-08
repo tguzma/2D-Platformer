@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class Death : MonoBehaviour
 {
+    public float deathDuration = 0.90f;
     public Transform basePlatform;
     private Rigidbody2D rb;
     private Vector3 respawnPosition;
+    private Animator animator;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,11 +30,19 @@ public class Death : MonoBehaviour
             character.gameObject.GetComponent<BossBehaviour>() != null ||
             character.gameObject.name.Contains("spike"))
         {
-            Respawn();
+            StartCoroutine(DeathSequence());
         }
     }
+    IEnumerator DeathSequence()
+    {
+        animator = GetComponent<Animator>();
+        animator.SetTrigger("Die");
 
-    public void Respawn()
+        yield return new WaitForSeconds(deathDuration);
+
+        Respawn();
+    }
+        public void Respawn()
     {
         ScoreHandler.Died();
         rb.transform.position = respawnPosition;

@@ -212,10 +212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3c2a86f2f477442b55ad65428d136a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killingObjects:
-  - {fileID: 0}
-  - {fileID: 3734243964995333236, guid: 9d26d4e7c11655340b14c09c04a2f09d, type: 3}
-  - {fileID: 763705359704424483, guid: a70218597b1d2d34798ae864cd1713ae, type: 3}
   basePlatform: {fileID: 0}
 --- !u!61 &6624375419890138527
 BoxCollider2D:
