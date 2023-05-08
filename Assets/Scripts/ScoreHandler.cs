@@ -35,6 +35,11 @@ public static class ScoreHandler
         Deaths++;
     }
 
+    public static void Collected()
+    {
+        CollectedObjects++;
+    }
+
     public static TimeSpan GetTime() => (TotalTime - TimeLeft);
     public static string GetDeaths() => Deaths.ToString();
     public static string GetCollected() => CollectedObjects.ToString();
