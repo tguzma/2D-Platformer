@@ -1,5 +1,6 @@
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterBehaviour : MonoBehaviour
 {
@@ -65,6 +66,11 @@ public class CharacterBehaviour : MonoBehaviour
         {
             spi.sprite = stillSprite;
             rb.gravityScale = fallingGravityScale;
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0, LoadSceneMode.Single);
         }
     }
 

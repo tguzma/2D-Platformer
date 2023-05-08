@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Death : MonoBehaviour
 {
@@ -34,6 +35,15 @@ public class Death : MonoBehaviour
     public void Respawn()
     {
         ScoreHandler.Died();
-        rb.transform.position = respawnPosition;
+        
+        if (ScoreHandler.IsArcade())
+        {
+            ScoreHandler.SetCollectedToZero();
+            SceneManager.LoadScene(1, LoadSceneMode.Single);
+        }
+        else
+        {
+            rb.transform.position = respawnPosition;
+        }
     }
 }
