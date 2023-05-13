@@ -1,8 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using UnityEngine;
 
 public static class ScoreHandler
 {
@@ -44,6 +40,11 @@ public static class ScoreHandler
     public static void SetCollectedToZero()
     {
         CollectedObjects = 0;
+    }
+
+    public static void InitArcade()
+    {
+        ArcadeMode = false;
     }
 
     public static void SetArcade()
