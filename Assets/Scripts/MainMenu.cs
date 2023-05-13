@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
         {
             var time = ScoreHandler.GetTime();
             score.text =
-                $"Time: {Math.Round(time.TotalMinutes,0)}m {Math.Round(time.TotalSeconds,0)}s\n" +
+                $"Time: {time.Minutes,0}m {time.Seconds,0}s\n" +
                 $"Coins: {ScoreHandler.GetCollected()}/20\n" +
                 $"Deaths: {ScoreHandler.GetDeaths()}\n" +
                 $"Arcade: {ScoreHandler.GetArcade()}\n" +
